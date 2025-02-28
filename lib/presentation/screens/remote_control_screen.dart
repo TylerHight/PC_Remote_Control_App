@@ -24,20 +24,9 @@ class RemoteControlScreen extends StatefulWidget {
 }
 
 class _RemoteControlScreenState extends State<RemoteControlScreen> {
-  // Mock device for demo purposes
-  final _mockDevice = const Device(
-    id: '1',
-    name: 'Living Room TV',
-    ipAddress: '192.168.1.100',
-  );
-
   @override
   void initState() {
     super.initState();
-    // Auto-connect to mock device for demo purposes
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      context.read<ConnectionBloc>().add(ConnectToDevice(_mockDevice));
-    });
   }
 
   void _sendCommand(CommandType commandType) {
@@ -49,8 +38,8 @@ class _RemoteControlScreenState extends State<RemoteControlScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Remote Control'),
-        centerTitle: true,
+        title: const ConnectionStatusWidget(),
+        centerTitle: false,
         actions: [
           IconButton(
             icon: const Icon(Icons.settings),
@@ -65,16 +54,6 @@ class _RemoteControlScreenState extends State<RemoteControlScreen> {
       body: SafeArea(
         child: Column(
           children: [
-            // Connection status
-            const Padding(
-              padding: EdgeInsets.all(16.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  ConnectionStatusWidget(),
-                ],
-              ),
-            ),
             // Main remote control interface
             Expanded(
               child: SingleChildScrollView(

@@ -27,3 +27,25 @@ class ConnectionStatusChanged extends ConnectionEvent {
   @override
   List<Object?> get props => [isConnected];
 }
+
+class StartScan extends ConnectionEvent {}
+
+class StopScan extends ConnectionEvent {}
+
+class DeviceDiscovered extends ConnectionEvent {
+  final Device device;
+
+  const DeviceDiscovered(this.device);
+
+  @override
+  List<Object?> get props => [device];
+}
+
+class ScanComplete extends ConnectionEvent {
+  final List<Device> devices;
+
+  const ScanComplete(this.devices);
+
+  @override
+  List<Object?> get props => [devices];
+}
