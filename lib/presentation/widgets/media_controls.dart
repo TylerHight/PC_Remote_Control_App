@@ -57,6 +57,7 @@ class MediaControls extends StatelessWidget {
               icon: Icons.skip_previous,
               onPressed: onPreviousPressed,
               label: 'Previous',
+              size: 50, // Smaller size
             ),
             const SizedBox(width: 16),
             ControlButton(
@@ -64,12 +65,14 @@ class MediaControls extends StatelessWidget {
               onPressed: onStopPressed,
               color: Colors.red,
               label: 'Stop',
+              size: 50, // Smaller size
             ),
             const SizedBox(width: 16),
             ControlButton(
               icon: Icons.skip_next,
               onPressed: onNextPressed,
               label: 'Next',
+              size: 50, // Smaller size
             ),
           ],
         ),
