@@ -14,6 +14,8 @@ import 'package:pc_remote_control_app/presentation/widgets/navigation_controls.d
 import 'package:pc_remote_control_app/presentation/widgets/volume_controls.dart';
 import 'package:pc_remote_control_app/presentation/widgets/feedback_overlay.dart';
 
+import '../widgets/control_button.dart';
+
 class RemoteControlScreen extends StatefulWidget {
   const RemoteControlScreen({super.key});
 
@@ -53,7 +55,6 @@ class _RemoteControlScreenState extends State<RemoteControlScreen> {
           IconButton(
             icon: const Icon(Icons.settings),
             onPressed: () {
-              // Navigate to settings screen (not implemented in this demo)
               ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(content: Text('Settings not implemented in demo')),
               );
@@ -88,9 +89,39 @@ class _RemoteControlScreenState extends State<RemoteControlScreen> {
                       onMenuPressed: () => _sendCommand(CommandType.menu),
                       onInfoPressed: () => _sendCommand(CommandType.info),
                     ),
-                    
-                    const SizedBox(height: 32),
-                    
+
+                    const SizedBox(height: 24),
+
+                    // Previous/Stop/Next buttons
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        ControlButton(
+                          icon: Icons.skip_previous,
+                          onPressed: () => _sendCommand(CommandType.previous),
+                          label: 'Previous',
+                          size: 50,
+                        ),
+                        const SizedBox(width: 16),
+                        ControlButton(
+                          icon: Icons.stop,
+                          onPressed: () => _sendCommand(CommandType.stop),
+                          color: Colors.red,
+                          label: 'Stop',
+                          size: 50,
+                        ),
+                        const SizedBox(width: 16),
+                        ControlButton(
+                          icon: Icons.skip_next,
+                          onPressed: () => _sendCommand(CommandType.next),
+                          label: 'Next',
+                          size: 50,
+                        ),
+                      ],
+                    ),
+
+                    const SizedBox(height: 24),
+
                     // D-Pad for navigation
                     DPad(
                       onUpPressed: () => _sendCommand(CommandType.up),
@@ -99,9 +130,9 @@ class _RemoteControlScreenState extends State<RemoteControlScreen> {
                       onRightPressed: () => _sendCommand(CommandType.right),
                       onCenterPressed: () => _sendCommand(CommandType.select),
                     ),
-                    
+
                     const SizedBox(height: 32),
-                    
+
                     // Media controls
                     MediaControls(
                       onPlayPausePressed: () => _sendCommand(CommandType.playPause),
@@ -111,21 +142,14 @@ class _RemoteControlScreenState extends State<RemoteControlScreen> {
                       onRewindPressed: () => _sendCommand(CommandType.rewind),
                       onForwardPressed: () => _sendCommand(CommandType.forward),
                     ),
-                    
+
                     const SizedBox(height: 32),
-                    
-                    // Volume and episode controls in a row
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        // Volume controls
-                        VolumeControls(
-                          onVolumeUpPressed: () => _sendCommand(CommandType.volumeUp),
-                          onVolumeDownPressed: () => _sendCommand(CommandType.volumeDown),
-                          onMutePressed: () => _sendCommand(CommandType.mute),
-                        ),
-                      ],
+
+                    // Volume controls
+                    VolumeControls(
+                      onVolumeUpPressed: () => _sendCommand(CommandType.volumeUp),
+                      onVolumeDownPressed: () => _sendCommand(CommandType.volumeDown),
+                      onMutePressed: () => _sendCommand(CommandType.mute),
                     ),
                   ],
                 ),

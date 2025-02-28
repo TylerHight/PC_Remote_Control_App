@@ -49,33 +49,6 @@ class MediaControls extends StatelessWidget {
             ),
           ],
         ),
-        const SizedBox(height: 16),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            ControlButton(
-              icon: Icons.skip_previous,
-              onPressed: onPreviousPressed,
-              label: 'Previous',
-              size: 50, // Smaller size
-            ),
-            const SizedBox(width: 16),
-            ControlButton(
-              icon: Icons.stop,
-              onPressed: onStopPressed,
-              color: Colors.red,
-              label: 'Stop',
-              size: 50, // Smaller size
-            ),
-            const SizedBox(width: 16),
-            ControlButton(
-              icon: Icons.skip_next,
-              onPressed: onNextPressed,
-              label: 'Next',
-              size: 50, // Smaller size
-            ),
-          ],
-        ),
       ],
     );
   }
