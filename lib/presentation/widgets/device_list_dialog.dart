@@ -16,6 +16,13 @@ class DeviceListDialog extends StatelessWidget {
           padding: const EdgeInsets.all(16),
           decoration: BoxDecoration(
             color: Theme.of(context).colorScheme.surface,
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.2),
+                blurRadius: 10,
+                offset: const Offset(0, -5),
+              ),
+            ],
             borderRadius: const BorderRadius.only(
               topLeft: Radius.circular(16),
               topRight: Radius.circular(16),
@@ -33,6 +40,7 @@ class DeviceListDialog extends StatelessWidget {
                     style: Theme.of(context).textTheme.titleLarge,
                   ),
                   IconButton(
+                    style: IconButton.styleFrom(elevation: 2),
                     icon: const Icon(Icons.close),
                     onPressed: () => Navigator.pop(context),
                   ),
@@ -42,6 +50,13 @@ class DeviceListDialog extends StatelessWidget {
               
               // Scan button
               ElevatedButton.icon(
+                style: ElevatedButton.styleFrom(
+                  elevation: 3,
+                  padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                ),
                 onPressed: state.isScanning
                     ? null
                     : () => context.read<ConnectionBloc>().add(StartScan()),
@@ -113,6 +128,16 @@ class DeviceListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final deviceCardDecoration = BoxDecoration(
+      borderRadius: BorderRadius.circular(12),
+      boxShadow: [
+        BoxShadow(
+          color: Colors.black.withOpacity(0.05),
+          blurRadius: 4,
+          offset: const Offset(0, 2),
+        ),
+      ],
+    );
     return ListTile(
       title: Text(device.name),
       subtitle: Text(device.id),
@@ -128,6 +153,8 @@ class DeviceListItem extends StatelessWidget {
             const Icon(Icons.device_unknown),
         ],
       ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      tileColor: Theme.of(context).colorScheme.surface,
       onTap: onTap,
     );
   }

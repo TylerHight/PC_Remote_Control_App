@@ -7,6 +7,7 @@ import 'package:pc_remote_control_app/business_logic/blocs/remote_control/remote
 import 'package:pc_remote_control_app/data/models/device.dart';
 import 'package:pc_remote_control_app/data/models/remote_command.dart';
 import 'package:pc_remote_control_app/presentation/widgets/connection_status_widget.dart';
+import 'package:pc_remote_control_app/presentation/screens/theme_settings_screen.dart';
 import 'package:pc_remote_control_app/presentation/widgets/d_pad.dart';
 import 'package:pc_remote_control_app/presentation/widgets/episode_controls.dart';
 import 'package:pc_remote_control_app/presentation/widgets/media_controls.dart';
@@ -42,12 +43,19 @@ class _RemoteControlScreenState extends State<RemoteControlScreen> {
         centerTitle: false,
         actions: [
           IconButton(
-            icon: const Icon(Icons.settings),
+            icon: const Icon(Icons.palette),
             onPressed: () {
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('Settings not implemented in demo')),
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const ThemeSettingsScreen()),
               );
             },
+          ),
+          IconButton(
+            icon: const Icon(Icons.settings),
+            onPressed: () => ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(content: Text('Settings not implemented in demo')),
+            ),
           ),
         ],
       ),
