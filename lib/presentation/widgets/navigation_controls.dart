@@ -21,14 +21,14 @@ class NavigationControls extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         ControlButton(
-          icon: Icons.home,
-          onPressed: onHomePressed,
-          label: 'Home',
-        ),
-        ControlButton(
           icon: Icons.arrow_back,
           onPressed: onBackPressed,
           label: 'Back',
+        ),
+        ControlButton(
+          icon: Icons.home,
+          onPressed: onHomePressed,
+          label: 'Home',
         ),
         ControlButton(
           icon: Icons.menu,

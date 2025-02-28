@@ -84,8 +84,8 @@ class _RemoteControlScreenState extends State<RemoteControlScreen> {
                   children: [
                     // Navigation controls (Home, Back, Menu, Info)
                     NavigationControls(
-                      onHomePressed: () => _sendCommand(CommandType.home),
                       onBackPressed: () => _sendCommand(CommandType.back),
+                      onHomePressed: () => _sendCommand(CommandType.home),
                       onMenuPressed: () => _sendCommand(CommandType.menu),
                       onInfoPressed: () => _sendCommand(CommandType.info),
                     ),
@@ -93,31 +93,45 @@ class _RemoteControlScreenState extends State<RemoteControlScreen> {
                     const SizedBox(height: 24),
 
                     // Previous/Stop/Next buttons
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        ControlButton(
-                          icon: Icons.skip_previous,
-                          onPressed: () => _sendCommand(CommandType.previous),
-                          label: 'Previous',
-                          size: 50,
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                      decoration: BoxDecoration(
+                        color: Theme.of(context).colorScheme.surface,
+                        borderRadius: BorderRadius.circular(16),
+                        border: Border.all(
+                          color: Theme.of(context).colorScheme.primary.withOpacity(0.2),
                         ),
-                        const SizedBox(width: 16),
-                        ControlButton(
-                          icon: Icons.stop,
-                          onPressed: () => _sendCommand(CommandType.stop),
-                          color: Colors.red,
-                          label: 'Stop',
-                          size: 50,
-                        ),
-                        const SizedBox(width: 16),
-                        ControlButton(
-                          icon: Icons.skip_next,
-                          onPressed: () => _sendCommand(CommandType.next),
-                          label: 'Next',
-                          size: 50,
-                        ),
-                      ],
+                      ),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          IconButton(
+                            icon: const Icon(Icons.skip_previous),
+                            onPressed: () => _sendCommand(CommandType.previous),
+                            color: Theme.of(context).colorScheme.primary,
+                          ),
+                          Container(
+                            height: 24,
+                            width: 1,
+                            color: Theme.of(context).colorScheme.primary.withOpacity(0.2),
+                          ),
+                          IconButton(
+                            icon: const Icon(Icons.stop),
+                            onPressed: () => _sendCommand(CommandType.stop),
+                            color: Colors.red,
+                          ),
+                          Container(
+                            height: 24,
+                            width: 1,
+                            color: Theme.of(context).colorScheme.primary.withOpacity(0.2),
+                          ),
+                          IconButton(
+                            icon: const Icon(Icons.skip_next),
+                            onPressed: () => _sendCommand(CommandType.next),
+                            color: Theme.of(context).colorScheme.primary,
+                          ),
+                        ],
+                      ),
                     ),
 
                     const SizedBox(height: 24),
